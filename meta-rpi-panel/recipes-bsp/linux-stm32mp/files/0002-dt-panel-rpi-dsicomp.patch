@@ -1,17 +1,50 @@
 diff -Naurw ./arch/arm/boot/dts/stm32mp157c-dk2.dts ../kernel-source/arch/arm/boot/dts/stm32mp157c-dk2.dts
 --- ./arch/arm/boot/dts/stm32mp157c-dk2.dts	2021-04-21 10:01:38.409734576 +0200
-+++ ../kernel-source/arch/arm/boot/dts/stm32mp157c-dk2.dts	2021-04-21 10:02:17.449810861 +0200
-@@ -58,7 +58,13 @@
++++ ../kernel-source/arch/arm/boot/dts/stm32mp157c-dk2.dts	2021-04-21 15:15:42.193535464 +0200
+@@ -57,11 +57,11 @@
+ 		};
  	};
  
- 	panel_otm8009a: panel-otm8009a@0 {
-+#if 0
- 		compatible = "orisetech,otm8009a";
-+#else
+-	panel_otm8009a: panel-otm8009a@0 {
+-		compatible = "orisetech,otm8009a";
++	panel_rpi_7inch: panel-rpi-7inch@0 {
 +		compatible = "raspberrypi,rpi-dsicomp";
 +		i2c-adapter = <&i2c1>;
 +		i2c-addr = <0x45>;
-+#endif
  		reg = <0>;
- 		reset-gpios = <&gpioe 4 GPIO_ACTIVE_LOW>;
- 		power-supply = <&v3v3>;
+-		reset-gpios = <&gpioe 4 GPIO_ACTIVE_LOW>;
+-		power-supply = <&v3v3>;
+ 		status = "okay";
+ 
+ 		port {
+@@ -73,30 +73,6 @@
+ };
+ 
+ &i2c1 {
+-	touchscreen@2a {
+-		compatible = "focaltech,ft6236";
+-		reg = <0x2a>;
+-		interrupts = <2 2>;
+-		interrupt-parent = <&gpiof>;
+-		interrupt-controller;
+-		touchscreen-size-x = <480>;
+-		touchscreen-size-y = <800>;
+-		panel = <&panel_otm8009a>;
+-		vcc-supply = <&v3v3>;
+-		status = "okay";
+-	};
+-	touchscreen@38 {
+-		compatible = "focaltech,ft6236";
+-		reg = <0x38>;
+-		interrupts = <2 2>;
+-		interrupt-parent = <&gpiof>;
+-		interrupt-controller;
+-		touchscreen-size-x = <480>;
+-		touchscreen-size-y = <800>;
+-		panel = <&panel_otm8009a>;
+-		vcc-supply = <&v3v3>;
+-		status = "okay";
+-	};
+ };
+ 
+ &ltdc {
